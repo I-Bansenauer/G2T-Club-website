@@ -1,3 +1,3 @@
 Garden to table club
 ====================
-the garden to table club web app
+The garden to table club web app for Songaia
