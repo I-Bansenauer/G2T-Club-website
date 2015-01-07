@@ -1,14 +1,14 @@
-<fa-app ng-controller="ListController" class="full-screen">
-	<fa-grid-layout fa-options="{dimensions: [3, 10]}">
-			<fa-modifier ng-repeat="item in persons">
-				 <fa-surface class="artist"
-				   fa-size="[250, 100]"
+<fa-app ng-controller="CardController" class="full-screen">
+	<fa-grid-layout fa-options="{dimensions: [5, 3]}">
+			<fa-modifier ng-repeat="item in menuCards">
+				 <fa-surface class="menuCard"
+				   fa-size="[undefined, 200]"
 	               fa-origin="[0.5, 0]"
-	               fa-align="[0.5, 0.5]">
-				 	<a ui-sref="details({itemId:persons.indexOf(item)})">
-						<img ng-src="images/famous-logo.svg" alt="{{item.name}}">
-						<h2>{{item.firstName}} {{item.lastName}}</h2>
-						<h3>{{item.email}}</h3>
+	               fa-align="[0.5, 0.5]"
+	               fa-background-color="yellow">
+				 	<a ui-sref="menuDetails({item:menuID})">
+						<p>{{item.date}}</p> 
+						<p>{{item.firstName}}</p>												<p>{{item.menuID}}</p>
 					</a>
 				</fa-surface>
 			</fa-modifier>

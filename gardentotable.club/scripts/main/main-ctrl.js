@@ -29,6 +29,16 @@ artistControllers.controller ('ListController', ['$scope', '$http', function ($s
     };
 }]);
 
+artistControllers.controller ('CardController', ['$scope', '$http', function ($scope, $http) {
+ $http.get('http://app.gardentotable.club/menuCards/').success(function(data){ 
+ 	$scope.menuCards = data.menuCards;
+ 	});
+ $scope.myGridLayoutOptions = {
+      dimensions: [3, 2]
+    };
+}]);
+
+
 artistControllers.controller ('DetailsController', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams ) {
 	$http.get('scripts/main/data.json').success(function(data){ 
 	 	$scope.artist = data[$stateParams.itemId];
