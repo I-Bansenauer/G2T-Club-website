@@ -30,13 +30,15 @@ artistControllers.controller ('ListController', ['$scope', '$http', function ($s
 }]);
 
 artistControllers.controller ('CardController', ['$scope', '$http', function ($scope, $http) {
-	
  $http.get('http://app.gardentotable.club/menuCards/').success(function(data){ 
- 	$scope.menuCards = data.menuCards;
+ 	  $scope.menuCards = data.menuCards;
  	});
  $scope.myGridLayoutOptions = {
       dimensions: [3, 2]
-    };
+    }; 
+ $scope.parseDate = function(dateString){
+	 return longDateS(dateString);
+ 	};
 }]);
 
 artistControllers.controller ('MenuController', ['$scope', '$http', function ($scope, $http) {

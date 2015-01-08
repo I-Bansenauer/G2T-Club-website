@@ -1,23 +1,20 @@
 <fa-app ng-controller="CardController" class="full-screen">
 	<fa-grid-layout fa-options="{dimensions: [5, 3]}">
 			<fa-modifier ng-repeat="card in menuCards">
-				 <fa-surface class="menuCard"
+				<a ui-sref="menuDetails({item:menuID})">
+				  <fa-surface class="menuCard"
 				   fa-size="[undefined, 200]"
 	               fa-origin="[0.5, 0]"
-	               fa-align="[0.5, 0.5]"
-	               fa-background-color="yellow">
-				 	<a ui-sref="menuDetails({item:menuID})">
-						<p>{{card.date}}</p> 
-						<dl>
-						<dt>Lead:</dt> <dd>{{card.firstName}}</dd></dl>
+	               fa-align="[0.5, 0.5]">
+						<h2>{{parseDate(card.date)}}</h2> 
 						<dl ng-controller="MenuController">
-							<dt>Menu:</dt>
-						<fa-modifier ng-repeat="dish in menuDishes | filter:{ type:'main' }">
-						<dd>{{dish.name}}</dd>
-						</fa-modifier>
-						</dl> 
-					</a>
-				</fa-surface>
+							<dt>Lead:</dt>
+								<dd>{{card.firstName}}</dd>
+							<dt style="margin-bottom: 0">Menu:</dt> 
+								<dd ng-repeat="dish in menuDishes | filter:{ type:'main' }">{{dish.name}}</dd>
+						</dl> 		
+				  </fa-surface>
+				</a>
 			</fa-modifier>
 	</fa-grid-layout>
 </fa-app>
