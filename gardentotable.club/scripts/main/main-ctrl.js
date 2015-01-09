@@ -1,8 +1,8 @@
 'use strict';
 
-var artistControllers = angular.module('artistControllers');
+var menuControllers = angular.module('menuControllers');
 
-artistControllers
+menuControllers
   .controller('MainCtrl', function ($scope, $famous) {
     var Transitionable = $famous['famous/transitions/Transitionable'];
     var Timer = $famous['famous/utilities/Timer'];
@@ -20,16 +20,7 @@ artistControllers
 
   });
 
-artistControllers.controller ('ListController', ['$scope', '$http', function ($scope, $http) {
- $http.get('http://app.gardentotable.club/persons/').success(function(data){ 
- 	$scope.persons = data.persons;
- 	});
- $scope.myGridLayoutOptions = {
-      dimensions: [3, 2]
-    };
-}]);
-
-artistControllers.controller ('CardController', ['$scope', '$http', function ($scope, $http) {
+menuControllers.controller ('CardController', ['$scope', '$http', function ($scope, $http) {
  $http.get('http://app.gardentotable.club/menuCards/').success(function(data){ 
  	  $scope.menuCards = data.menuCards;
  	});
@@ -41,13 +32,13 @@ artistControllers.controller ('CardController', ['$scope', '$http', function ($s
  	};
 }]);
 
-artistControllers.controller ('MenuController', ['$scope', '$http', function ($scope, $http) {
+menuControllers.controller ('MenuController', ['$scope', '$http', function ($scope, $http) {
  $http.get('http://app.gardentotable.club/menuDishes/' + $scope.card.menuID).success(function(data){ 
  	$scope.menuDishes = data.menuDishes;
  	});
 }]);
 
-artistControllers.controller ('DetailsController', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams ) {
+menuControllers.controller ('DetailsController', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams ) {
 	$http.get('scripts/main/data.json').success(function(data){ 
 	 	$scope.artist = data[$stateParams.itemId];
 

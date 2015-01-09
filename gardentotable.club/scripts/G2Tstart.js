@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('artistControllers',
+angular.module('menuControllers',
   ['ngAnimate', 'ngCookies',
     'ngTouch', 'ngSanitize',
     'ngResource', 'ui.router',
@@ -12,15 +12,10 @@ angular.module('artistControllers',
         templateUrl: 'partials/main.html',
         controller: 'MainCtrl'
       })
-      .state('jade', {
-        url: '/jade',
-        templateUrl: 'partials/jade.html',
-        controller: 'MainCtrl'
-      })
-      .state('list', {
-	    url: '/list',
-		templateUrl: 'partials/list.html',
-		controller: 'ListController'
+       .state('menu', {
+	    url: '/menu',
+		templateUrl: 'partials/menu.html',
+		controller: 'CardController'
 		})
 		.state('details', {
 		url: '/details/:itemId', 
