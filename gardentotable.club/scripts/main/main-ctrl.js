@@ -4,8 +4,9 @@ var menuControllers = angular.module('menuControllers');
 
 menuControllers
   .controller('MainCtrl', function ($scope, $famous) {
-    var Transitionable = $famous['famous/transitions/Transitionable'];
     var Timer = $famous['famous/utilities/Timer'];
+	var Transitionable = $famous['famous/transitions/Transitionable'];
+
 
     $scope.spinner = {
       speed: 55
@@ -20,10 +21,24 @@ menuControllers
 
   });
 
-menuControllers.controller ('CardController', ['$scope', '$http', function ($scope, $http) {
+menuControllers.controller ('CardController', ['$scope', '$http', '$famous', function ($scope, $http, $famous) {
+	var Transitionable = $famous['famous/transitions/Transitionable'];
+	$scope.cardDeck = new Array();
+ 
  $http.get('http://app.gardentotable.club/menuCards/').success(function(data){ 
  	  $scope.menuCards = data.menuCards;
- 	});
+ 	  for( var i = 0; i<data.menuCards.length;i++)
+ 	  {
+	 	  $scope.cardDeck[i] = new Transitionable(0);
+ 	  }
+ 	}); 
+ 
+ $scope.animateFlip = function(cardNum) {
+        $scope.cardDeck[cardNum].set(Math.PI, {
+          duration: 1000,
+          curve: 'easeInOut'
+        });
+    };
  $scope.myGridLayoutOptions = {
       dimensions: [3, 2]
     }; 

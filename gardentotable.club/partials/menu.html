@@ -1,11 +1,13 @@
 <fa-app class="full-screen">
 	<fa-grid-layout fa-options="{dimensions: [5, 3]}">
 			<fa-modifier ng-repeat="card in menuCards">
-				<a ui-sref="menuDetails({item:menuID})">
-				  <fa-surface class="menuCard"
+				<!--a ui-sref="menuDetails({card:menuID})"-->
+				<fa-modifier fa-origin="[0.5, 0.5]"
 				   fa-size="[undefined, 200]"
-	               fa-origin="[0.5, 0]"
-	               fa-align="[0.5, 0.5]">
+	               fa-align="[0.5, 0.5]" 
+					fa-rotate-y="cardDeck[{{menuCards.indexOf(card)}}].get()" >
+				  <fa-surface class="menuCard"
+	               	fa-click="animateFlip({{menuCards.indexOf(card)}})">
 						<h2>{{parseDate(card.date)}}</h2> 
 						<dl ng-controller="MenuController">
 							<dt>Lead:</dt>
@@ -14,7 +16,9 @@
 								<dd ng-repeat="dish in menuDishes | filter:{ type:'main' }">{{dish.name}}</dd>
 						</dl> 		
 				  </fa-surface>
-				</a>
+				</fa-modifier>
+				<!--/a-->
 			</fa-modifier>
 	</fa-grid-layout>
 </fa-app>
+	
