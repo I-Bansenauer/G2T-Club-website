@@ -23,22 +23,30 @@ menuControllers
 
 menuControllers.controller ('CardController', ['$scope', '$http', '$famous', function ($scope, $http, $famous) {
 	var Transitionable = $famous['famous/transitions/Transitionable'];
-	$scope.cardDeck = new Array();
+	$scope.cardDeck = [];
+	$scope.growDeck = [];
  
  $http.get('http://app.gardentotable.club/menuCards/').success(function(data){ 
- 	  $scope.menuCards = data.menuCards;
+ 	 $scope.menuCards = data.menuCards;
  	  for( var i = 0; i<data.menuCards.length;i++)
  	  {
 	 	  $scope.cardDeck[i] = new Transitionable(0);
+	 	  $scope.growDeck[i] = new Transitionable([undefined, 200]);
  	  }
  	}); 
  
  $scope.animateFlip = function(cardNum) {
-        $scope.cardDeck[cardNum].set(Math.PI, {
-          duration: 800,
-          curve: 'easeInOut'
-        });
-    };
+	$scope.cardDeck[cardNum].set(Math.PI, {
+	  duration: 800,
+	  curve: 'easeInOut'
+	});
+ };
+ $scope.animateGrow = function(cardNum){
+	 $scope.growDeck[cardNum].set([undefined, 300], {
+	  duration: 800,
+	  curve: 'easeInOut'
+	},$scope.animateFlip(cardNum));
+ };
  $scope.myGridLayoutOptions = {
       dimensions: [3, 2]
     }; 
