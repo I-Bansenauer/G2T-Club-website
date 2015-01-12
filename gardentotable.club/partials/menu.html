@@ -1,24 +1,44 @@
 <fa-app class="full-screen">
 	<fa-grid-layout fa-options="{dimensions: [5, 3]}">
-			<fa-modifier ng-repeat="card in menuCards">
-				<!--a ui-sref="menuDetails({card:menuID})"-->
-				<fa-modifier fa-origin="[0.5, 0.5]"
-				   fa-size="[undefined, 200]"
-	               fa-align="[0.5, 0.5]" 
-					fa-rotate-y="cardDeck[{{menuCards.indexOf(card)}}].get()" >
-				  <fa-surface class="menuCard"
-	               	fa-click="animateFlip({{menuCards.indexOf(card)}})">
-						<h2>{{parseDate(card.date)}}</h2> 
-						<dl ng-controller="MenuController">
-							<dt>Lead:</dt>
-								<dd>{{card.firstName}}</dd>
-							<dt style="margin-bottom: 0">Menu:</dt> 
-								<dd ng-repeat="dish in menuDishes | filter:{ type:'main' }">{{dish.name}}</dd>
-						</dl> 		
-				  </fa-surface>
-				</fa-modifier>
-				<!--/a-->
+		<fa-modifier ng-repeat="card in menuCards" 
+			fa-origin="[0.5, 0.5]" fa-size="[undefined, 200]"
+			fa-margin="[0.0, 20]" fa-transform-origin="[0.5,0.5]">
+			<!--a ui-sref="menuDetails({card:menuID})"-->
+			<fa-modifier fa-rotate-y="cardDeck[{{menuCards.indexOf(card)}}].get()" >
+			  <fa-surface class="menuCard"
+	           	fa-click="animateFlip({{menuCards.indexOf(card)}})">
+					<h2>{{parseDate(card.date)}}</h2> 
+					<dl ng-controller="MenuController">
+						<dt>Lead:</dt>
+							<dd>{{card.firstName}}</dd>
+						<dt style="margin-bottom: 0">Menu:</dt> 
+							<dd ng-repeat="dish in menuDishes | filter:{ type:'main' }">{{dish.name}}</dd>
+					</dl> 		
+			  </fa-surface>
+			    <!-- Back face:  menu and slot details -->
+			    <fa-modifier fa-rotate-y="3.14159">
+			      <fa-surface fa-size="[undefined, undefined]" class="menuCard">
+			      	<h1>People:</h1>
+			        <dl ng-controller="MealSlotsController">
+						<dt>Lead: </dt>
+						<dd ng-repeat="slot in mealSlots | filter:{ type:'lead'}">{{slot.firstName}}</li>
+						<dt>Second: </dt>
+						<dd ng-repeat="slot in mealSlots | filter:{ type:'second'}">{{slot.firstName}}</li>
+						<dt>Setup: </dt>
+						<dd ng-repeat="slot in mealSlots | filter:{ type:'setup'}">{{slot.firstName}}</li>
+						<dt>Cleanup: </dt>
+						<dd ng-repeat="slot in mealSlots | filter:{ type:'cleanup'}">{{slot.firstName}}</li>
+					</dl> 		
+			        <h1>Menu:</h1>
+			        <ul ng-controller="MenuController">
+						<li ng-repeat="dish in menuDishes">{{dish.name}}</li>
+					</ul> 		
+
+			      </fa-surface>
+			    </fa-modifier>		  
 			</fa-modifier>
+			<!--/a-->
+		</fa-modifier>
 	</fa-grid-layout>
 </fa-app>
 	

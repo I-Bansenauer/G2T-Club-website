@@ -35,7 +35,7 @@ menuControllers.controller ('CardController', ['$scope', '$http', '$famous', fun
  
  $scope.animateFlip = function(cardNum) {
         $scope.cardDeck[cardNum].set(Math.PI, {
-          duration: 1000,
+          duration: 800,
           curve: 'easeInOut'
         });
     };
@@ -50,6 +50,12 @@ menuControllers.controller ('CardController', ['$scope', '$http', '$famous', fun
 menuControllers.controller ('MenuController', ['$scope', '$http', function ($scope, $http) {
  $http.get('http://app.gardentotable.club/menuDishes/' + $scope.card.menuID).success(function(data){ 
  	$scope.menuDishes = data.menuDishes;
+ 	});
+}]);
+
+menuControllers.controller ('MealSlotsController', ['$scope', '$http', function ($scope, $http) {
+ $http.get('http://app.gardentotable.club/mealSlots/' + $scope.card.mealID).success(function(data){ 
+ 	$scope.mealSlots = data.mealSlots;
  	});
 }]);
 
